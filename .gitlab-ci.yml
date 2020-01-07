@@ -1,0 +1,25 @@
+build-image:
+  stage: build
+  script: >
+    docker build . \
+      --build-arg PROSPERO_VERSION=$PROSPERO_VERSION \
+      --tag prosperologie/prospero:$PROSPERO_VERSION \
+      --tag prosperologie/prospero:latest
+  only:
+    variables:
+      - $PROSPERO_VERSION
+      - $DOCKER_USERNAME
+      - $DOCKER_PASSWORD
+
+push-image:
+  stage: deploy
+  before_script:
+    - docker login --username $DOCKERHUB_USERNAME --password "$DOCKERHUB_PASSWORD"
+  script:
+    - docker push prosperologie/prospero:$PROSPERO_VERSION
+    - docker push prosperologie/prospero:latest
+  only:
+    variables:
+      - $PROSPERO_VERSION
+      - $DOCKER_USERNAME
+      - $DOCKER_PASSWORD

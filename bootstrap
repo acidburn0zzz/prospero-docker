@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+cd /srv/prospero
+EDITOR="echo" rails credentials:edit
+rails assets:precompile
+rake db:migrate
+foreman start
