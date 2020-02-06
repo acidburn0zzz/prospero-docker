@@ -24,6 +24,7 @@ RUN gem install bundler:2.0.2
 RUN gem install foreman
 RUN bundle install --without development test
 RUN yarn install
+RUN rails assets:precompile
 
 # Clean up system
 RUN apt purge --yes yarn git
