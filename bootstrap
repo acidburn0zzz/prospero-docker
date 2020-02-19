@@ -3,6 +3,7 @@
 set -e
 
 cd /srv/prospero
+EDITOR="echo" bundle exec rails credentials:edit
 bundle exec rails assets:precompile
 bundle exec rake db:migrate
 foreman start
