@@ -22,7 +22,8 @@ WORKDIR /srv/prospero
 RUN git checkout v$PROSPERO_VERSION
 RUN gem install bundler --version '~> 2.0'
 RUN gem install foreman
-RUN bundle install --without development test
+RUN bundle config set without 'development test'
+RUN bundle install
 RUN yarn install
 RUN rails assets:precompile
 
