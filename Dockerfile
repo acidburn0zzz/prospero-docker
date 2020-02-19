@@ -30,7 +30,7 @@ RUN rails assets:precompile
 RUN apt purge --yes yarn git
 RUN apt autoremove --yes
 
-EDITOR="echo" rails credentials:edit
+RUN EDITOR="echo" rails credentials:edit
 
 ENTRYPOINT ["bootstrap"]
 
