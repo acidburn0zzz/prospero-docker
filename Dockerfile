@@ -26,7 +26,8 @@ RUN bundle config set without 'development test'
 RUN bundle install
 RUN yarn install
 RUN rails assets:precompile
-RUN EDITOR="echo" rails credentials:edit
+ENV EDITOR echo
+RUN rails credentials:edit
 
 # Clean up system
 RUN apt purge --yes yarn git
