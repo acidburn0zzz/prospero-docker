@@ -3,6 +3,6 @@
 set -e
 
 cd /srv/prospero
-rails assets:precompile
-rake db:migrate
+bundle exec rails assets:precompile
+bundle exec rake db:migrate
 foreman start
