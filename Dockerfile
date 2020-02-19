@@ -26,12 +26,12 @@ RUN bundle config set without 'development test'
 RUN bundle install
 RUN yarn install
 RUN rails assets:precompile
+RUN EDITOR="echo" rails credentials:edit
 
 # Clean up system
 RUN apt purge --yes yarn git
 RUN apt autoremove --yes
 
-RUN EDITOR="echo" rails credentials:edit
 
 ENTRYPOINT ["bootstrap"]
 
